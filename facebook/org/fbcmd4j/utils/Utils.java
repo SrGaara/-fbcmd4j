@@ -199,19 +199,16 @@ public class Utils {
 		}		
 	}
 	
-
-	public static Twitter configuraTwitter(Properties props){
-		Twitter twitter = new TwitterFactory().getInstance();
-		logger.info("Configurando Instancia de twitter");
-		twitter.setOAuthConsumer(props.getProperty("oauth.consumerKey"), 
-				props.getProperty("oauth.consumerSecret"));
-		if (!(props.getProperty("oauth.accessTokenSecret") ==  null) && 
-				!(props.getProperty("oauth.accessTokenSecret") ==  null))
-			twitter.setOAuthAccessToken(new AccessToken(props.getProperty("oauth.accessToken"),
-					props.getProperty("oauth.accessTokenSecret")));
-		return twitter;
+	public static Facebook configFacebook(Properties props) {
+		Facebook fb = new FacebookFactory().getInstance();
+		fb.setOAuthAppId(props.getProperty("oauth.appId"), props.getProperty("oauth.appSecret"));
+		fb.setOAuthPermissions(props.getProperty("oauth.permissions"));
+		if(props.getProperty("oauth.accessToken") != null)
+			fb.setOAuthAccessToken(new AccessToken(props.getProperty("oauth.accessToken"), null));
+		
+		return fb;
 	}
-
+	
 	public static Properties loadPropertiesFromFile(String foldername, String filename) throws IOException{
 		Properties props = new Properties();
 		Path configFile = Paths.get(foldername, filename);
