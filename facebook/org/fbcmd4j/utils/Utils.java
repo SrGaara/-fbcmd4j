@@ -172,7 +172,23 @@ public class Utils {
 		       //redirect_uri=<VALID_OAUTH_REDIRECT_URL>
 	}
 	
+	public static void postLink(String link, Facebook facebook) {
+		try {
+			//facebook.postLink(new URL("http://facebook4j.org"));
+			//facebook.postLink(new URL("http://facebook4j.org"), "A Java library for the Facebook Graph API");
+			System.out.println("Se ha publicado la URL");
+			facebook.postLink(new URL(link));
+		} catch (MalformedURLException e) {
+			logger.error(e);
+		} catch (FacebookException e) {
+			logger.error(e);
+		}
+	}
 	
+	public static void saveProperties(String folderName, String fileName, Properties props) throws IOException {
+		Path configFile = Paths.get(folderName, fileName);
+		props.store(Files.newOutputStream(configFile), "Generado por org.fbcmd4j.configTokens");
+	}
 
 					// Solicita PIN al usuario
 					System.out.print("Ingresa PIN obtenido al autorizar aplicación:");
