@@ -1,100 +1,194 @@
-package twitter;
+package org.fbcmd4j.utils;
 
-import java.awt.Desktop;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
-//import java.util.function.BiConsumer;
+import java.util.concurrent.TimeUnit;
+import java.util.function.BiConsumer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import twitter4j.Status;
-import twitter4j.User;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
-import twitter4j.auth.RequestToken;
+import facebook4j.Facebook;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
+import facebook4j.Post;
+import facebook4j.internal.org.json.JSONObject;
 
 public class Utils {
-	static final Logger logger = LogManager.getLogger(Utils.class);
-
+	private static final Logger logger = LogManager.getLogger(Utils.class);
+	
 	/* Basado en GetAccessToken.java de 
-	 * Yusuke Yamamoto
-	 * */
-	static void obtenerAccessToken(String foldername, String filename, Properties props, Scanner scanner) {
+	 +	 * Yusuke Yamamoto
+	 +	 * */
+	// Inicia con el proceso de obtener Token
+	 //		twitter.setOAuthConsumer(props.getProperty("oauth.consumerKey"), props.getProperty("oauth.consumerSecret"));
+	 //		RequestToken requestToken = twitter.getOAuthRequestToken();
+	 //		logger.info("Obteninedo request Token.");
+	 //		System.out.println("Request token: " + requestToken.getToken());
+	 //		System.out.println("Request token secret: " + requestToken.getTokenSecret());
+	 //	AccessToken accessToken = null;
+	 
+	public static Properties loadConfigFile(String folderName, String fileName) throws IOException {
+		Properties props = new Properties();
+		Path configFolder = Paths.get(folderName);
+		Path configFile = Paths.get(folderName, fileName);
+		if (!Files.exists(configFile)) {
+			logger.info("Creando nuevo archivo.");
+			
+			if (!Files.exists(configFolder))
+				Files.createDirectory(configFolder);
+			
+			Files.copy(Utils.class.getResourceAsStream("fbcmd4j.properties"), configFile);
+		}
+
+		props.load(Files.newInputStream(configFile));
+		BiConsumer<Object, Object> emptyProperty = (k, v) -> {
+			if(((String)v).isEmpty())
+				logger.info("La propiedad '" + k + "' esta vacio");
+		};
+		props.forEach(emptyProperty);
+
+		return props;
+	}
+	
+	public static void estabtoken(String folderName, String fileName, Properties propiedades, Scanner scanner) {
 		try {
-		
-			Twitter twitter = new TwitterFactory().getInstance();
-			/* 1. oauth.consumerKey y oauth.consumerSecret son requeridas para obtener 
-			 * los tokens de acceso. Crear condiciones para validar si existen en 
-			 * las propiedades props y si no, pediras al usuario para posteriormente guardarlos
-			 * con el mÃ©todo props.setProperty("oauth.consumerKey", consumerKey); 
-			 * */
-			// Escribe tu cÃ³digo aquÃ­ {
-			/*	Twitter twitter1 = TwitterFactory.getSingleton();
-		    twitter1.setOAuthConsumer("[consumer key]", "[consumer secret]");
-		    RequestToken requestToken = twitter1.getOAuthRequestToken();
-		    AccessToken accessToken = null;
-		    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		    while (null == accessToken) {
-		      System.out.println("Open the following URL and grant access to your account:");
-		      System.out.println(requestToken.getAuthorizationURL());
-		      System.out.print("Enter the PIN(if aviailable) or just hit enter.[PIN]:");
-		      String pin = br.readLine();
-		      try{
-		         if(pin.length() > 0){
-		           accessToken = twitter1.getOAuthAccessToken(requestToken, pin);
-		         }else{
-		           accessToken = twitter1.getOAuthAccessToken();
-		         }
-		      } catch (TwitterException te) {
-		        if(401 == te.getStatusCode()){
-		          System.out.println("Unable to get the access token.");
-		        }else{
-		          te.printStackTrace();
+			//redirect_uri es un parámetro opcional. Cuando proporcionas una URL,
+			//se redirigirá a la persona a esta URL después de completar el inicio de sesión correctamente. 
+			// Esto te permite iniciar la sesión de la persona en el sitio web de tu aplicación para fines de una administración de cuentas más completa
+			//Esta URL debe ser una URL de redireccionamiento de OAuth
+			// se configura en "Configuración > Avanzada"
+			URL url = new URL("https://graph.facebook.com/v2.6/device/login");
+	        Map<String,Object> params = new LinkedHashMap<>();
+	        //access_token=<YOUR_APP_ID|CLIENT_TOKEN>
+	        params.put("access_token", "122183835131175|8773a08f5430ce908f7a2a1ba51dfcfd");
+	        //El parámetro scope es opcional y debe contener una lista separada por comas
+	        //de permisos de inicio de sesión aprobados para su uso en la revisión del inicio de sesión.
+	        params.put("scope", propiedades.getProperty("oauth.permissions"));
+
+	        StringBuilder postData = new StringBuilder();
+	        for (Map.Entry<String,Object> param : params.entrySet()) {
+	            if (postData.length() != 0) postData.append('&');
+	            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+	            postData.append('=');
+	            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+	        }
+	        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+
+	        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+	        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+	        conn.setDoOutput(true);
+	        conn.getOutputStream().write(postDataBytes);
+
+	        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+	        StringBuilder sb = new StringBuilder();
+	        for (int c; (c = in.read()) >= 0;)
+	            sb.append((char)c);
+	        String response = sb.toString();
+	        
+	        JSONObject obj = new JSONObject(response);
+	        String code = obj.getString("code");
+	        String userCode = obj.getString("user_code");
+	        
+			System.out.println("Ingresa a la pagina https://www.facebook.com/device , logea en face book, acepta los permisos, inserta la siguiente clave --->: " + userCode);
+
+			String accessToken = "";
+			while(accessToken.isEmpty()) {
+		        try {
+		            TimeUnit.SECONDS.sleep(5);
+		        } catch (InterruptedException e) {
+					logger.error(e);
 		        }
-		      }
+		        
+		        //Consultar la autorización
+		        
+		        URL url1 = new URL("https://graph.facebook.com/v2.6/device/login_status");
+		        params = new LinkedHashMap<>();
+		        params.put("access_token", "122183835131175|8773a08f5430ce908f7a2a1ba51dfcfd");
+		        params.put("code", code);    
+		        postData = new StringBuilder();
+		        for (Map.Entry<String,Object> param : params.entrySet()) {
+		            if (postData.length() != 0) postData.append('&');
+		            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+		            postData.append('=');
+		            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+		        }
+		        postDataBytes = postData.toString().getBytes("UTF-8");
+	
+		        HttpURLConnection conn1 = (HttpURLConnection)url1.openConnection();
+		        conn1.setRequestMethod("POST");
+		        conn1.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+		        conn1.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+		        conn1.setDoOutput(true);
+		        conn1.getOutputStream().write(postDataBytes);
+
+		        try {
+		        	in = new BufferedReader(new InputStreamReader(conn1.getInputStream(), "UTF-8"));
+			        sb = new StringBuilder();
+			        for (int c; (c = in.read()) >= 0;)
+			            sb.append((char)c);		        
+			        response = sb.toString();
+			        
+			        obj = new JSONObject(response);
+			        accessToken = obj.getString("access_token");
+		        } catch(IOException ignore) {
+		        }
 		    }
-		    //persist to the accessToken for future reference.
-		    storeAccessToken(twitter1.verifyCredentials().getId() , accessToken);
-		    Status status = twitter1.updateStatus(args[0]);
-		    System.out.println("Successfully updated the status to [" + status.getText() + "].");
-		   System.exit0();}
-		  }*/
 			
-			//esta predefinido
-			
-			// }
-
-			// Inicia con el proceso de obtener Token
-			twitter.setOAuthConsumer(props.getProperty("oauth.consumerKey"), props.getProperty("oauth.consumerSecret"));
-			RequestToken requestToken = twitter.getOAuthRequestToken();
-			logger.info("Obteninedo request Token.");
-			System.out.println("Request token: " + requestToken.getToken());
-			System.out.println("Request token secret: " + requestToken.getTokenSecret());
-			AccessToken accessToken = null;
-
-			// Obtiene URL para autorizar aplicaciÃ³n
-			try {
-				while (null == accessToken) {
-					System.out.println("\tAbre el siguiente URL y authoriza tu cuenta si no"
-							+ " se abre tu navegador automÃ¡ticamente:");
-					System.out.println("\t" +requestToken.getAuthorizationURL());
-					try {
-						Desktop.getDesktop().browse(new URI(requestToken.getAuthorizationURL()));
-					} catch (UnsupportedOperationException ignore) {
-					} catch (IOException ignore) {
-					} catch (URISyntaxException e) {
-						throw new AssertionError(e);
-					}
+	        propiedades.setProperty("oauth.accessToken", accessToken);
+	        
+			saveProperties(folderName, fileName, propiedades);
+			System.out.println("has iniciado sesion.");
+			logger.info("has iniciado sesion.");
+		} catch(Exception e) {
+			logger.error(e);
+		}
+		
+		
+		//URL url = new URL("https://graph.facebook.com/v2.6/device/login");
+		  //     int scope;
+			//int redirect_uri;
+			//Object access_token = 122183835131175|8773a08f5430ce908f7a2a1ba51dfcfd>
+		      // scope=<user_website, user_about_me, user_status, user_posts, publish_actions, public_profile> // e.g. public_profile,user_likes
+		       //redirect_uri=<VALID_OAUTH_REDIRECT_URL>
+	}
+	
+	public static void postLink(String link, Facebook facebook) {
+		try {
+			//facebook.postLink(new URL("http://facebook4j.org"));
+			//facebook.postLink(new URL("http://facebook4j.org"), "A Java library for the Facebook Graph API");
+			System.out.println("Se ha publicado la URL");
+			facebook.postLink(new URL(link));
+		} catch (MalformedURLException e) {
+			logger.error(e);
+		} catch (FacebookException e) {
+			logger.error(e);
+		}
+	}
+	
+	public static void saveProperties(String folderName, String fileName, Properties props) throws IOException {
+		Path configFile = Paths.get(folderName, fileName);
+		props.store(Files.newOutputStream(configFile), "Generado por org.fbcmd4j.configTokens");
+	}
 
 					// Solicita PIN al usuario
 					System.out.print("Ingresa PIN obtenido al autorizar aplicaciÃ³n:");
