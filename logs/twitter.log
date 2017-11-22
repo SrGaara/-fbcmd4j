@@ -1,0 +1,178 @@
+2017-11-15 19:01:32.590 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:01:32.652 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:01:41.500 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:01:48.173 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:01:48.177 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:02:31.382 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:02:31.446 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:02:36.226 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:02:36.229 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:02:50.808 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:02:50.873 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:03:05.486 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:03:05.490 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:03:32.295 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:03:32.367 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:03:34.958 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:03:34.961 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:03:49.802 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:03:49.879 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:03:55.071 [main] ERROR twitter.Main - Bad Authentication data.
+2017-11-15 19:03:58.695 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:04:01.237 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:04:01.240 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:05:14.737 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:05:14.814 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:05:18.322 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:05:18.326 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:05:43.796 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:05:43.866 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:05:49.048 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:05:49.051 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:07:06.830 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:07:06.910 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:07:15.695 [main] ERROR twitter.Utils - 400:The request was invalid. An accompanying error message will explain why. This is the status code will be returned during version 1.0 rate limiting(https://dev.twitter.com/pages/rate-limiting). In API v1.1, a request without authentication is considered invalid and you will get this response.
+message - Bad Authentication data.
+code - 215
+
+Relevant discussions can be found on the Internet at:
+	http://www.google.co.jp/search?q=3cc69290 or
+	http://www.google.co.jp/search?q=45a986a5
+TwitterException{exceptionCode=[3cc69290-45a986a5], statusCode=400, message=Bad Authentication data., code=215, retryAfter=-1, rateLimitStatus=null, version=4.0.4}
+2017-11-15 19:07:15.700 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:09:02.942 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:09:03.007 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:09:43.500 [main] INFO  twitter.Utils - Obteninedo request Token.
+2017-11-15 19:09:55.455 [main] INFO  twitter.Utils - Access token Obtenido.
+2017-11-15 19:09:55.461 [main] INFO  twitter.Utils - Configuraión guardada exitosamente.
+2017-11-15 19:09:55.469 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:10:01.101 [main] ERROR twitter.Main - null
+2017-11-15 19:10:30.401 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:10:30.466 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:10:31.830 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:10:39.006 [main] ERROR twitter.Main - null
+2017-11-15 19:10:50.386 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:10:50.449 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:10:51.975 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:10:58.389 [main] ERROR twitter.Main - null
+2017-11-15 19:11:33.684 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:11:33.749 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:11:40.367 [main] ERROR twitter.Main - null
+2017-11-15 19:15:34.072 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:15:34.135 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:15:55.418 [main] ERROR twitter.Main - null
+2017-11-15 19:19:56.019 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:19:56.082 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:20:01.904 [main] ERROR twitter.Main - null
+2017-11-15 19:20:44.833 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:20:44.916 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:20:51.355 [main] ERROR twitter.Main - java.lang.ClassCastException: twitter4j.ResponseListImpl cannot be cast to twitter4j.Status
+2017-11-15 19:20:55.521 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:21:22.987 [main] INFO  twitter.Utils - Obteninedo request Token.
+2017-11-15 19:21:30.411 [main] INFO  twitter.Utils - Access token Obtenido.
+2017-11-15 19:21:30.414 [main] INFO  twitter.Utils - Configuraión guardada exitosamente.
+2017-11-15 19:21:30.414 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:21:39.659 [main] ERROR twitter.Main - java.lang.ClassCastException: twitter4j.ResponseListImpl cannot be cast to twitter4j.Status
+2017-11-15 19:27:08.252 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:27:08.315 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:27:47.302 [main] INFO  twitter.Utils - Obteninedo request Token.
+2017-11-15 19:28:00.767 [main] INFO  twitter.Utils - Access token Obtenido.
+2017-11-15 19:28:00.777 [main] INFO  twitter.Utils - Configuraión guardada exitosamente.
+2017-11-15 19:28:00.793 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:28:06.111 [main] ERROR twitter.Main - null
+2017-11-15 19:29:13.789 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:29:13.868 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:29:24.758 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:31:30.384 [main] ERROR twitter.Main - null
+2017-11-15 19:32:31.250 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:32:31.328 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:32:51.018 [main] INFO  twitter.Utils - Obteninedo request Token.
+2017-11-15 19:33:00.153 [main] INFO  twitter.Utils - Access token Obtenido.
+2017-11-15 19:33:00.164 [main] INFO  twitter.Utils - Configuraión guardada exitosamente.
+2017-11-15 19:33:00.164 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:33:08.409 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:33:25.359 [main] ERROR twitter.Main - java.lang.ClassCastException: twitter4j.ResponseListImpl cannot be cast to twitter4j.Status
+2017-11-15 19:33:52.443 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:33:52.505 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:34:10.828 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:36:49.830 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:36:49.908 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:36:56.004 [main] ERROR twitter.Main - java.lang.ClassCastException: twitter4j.ResponseListImpl cannot be cast to twitter4j.Status
+2017-11-15 19:37:48.019 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:37:48.081 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:37:53.318 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:49:45.383 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:49:45.446 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:50:57.367 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:50:57.430 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:51:01.106 [main] INFO  twitter.Utils - Obteninedo request Token.
+2017-11-15 19:51:23.738 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:51:23.800 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:51:27.111 [main] INFO  twitter.Utils - Obteninedo request Token.
+2017-11-15 19:52:17.692 [main] INFO  twitter.Main - inicializando app
+2017-11-15 19:52:17.754 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:52:21.941 [main] INFO  twitter.Utils - Obteninedo request Token.
+2017-11-15 19:52:32.060 [main] INFO  twitter.Utils - Access token Obtenido.
+2017-11-15 19:52:32.078 [main] INFO  twitter.Utils - Configuraión guardada exitosamente.
+2017-11-15 19:52:32.078 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:52:41.662 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:52:44.296 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-15 19:53:53.436 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-17 10:17:06.677 [main] INFO  twitter.Main - inicializando app
+2017-11-17 10:17:06.746 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-17 10:17:11.130 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-17 10:17:27.437 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-17 10:17:33.581 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-17 10:27:15.748 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-21 16:43:14.796 [main] INFO  twitter.Main - inicializando app
+2017-11-21 16:43:14.833 [main] INFO  twitter.Utils - Configurando Instancia de twitter
+2017-11-21 16:43:22.213 [main] INFO  twitter.Utils - Obteninedo request Token.
