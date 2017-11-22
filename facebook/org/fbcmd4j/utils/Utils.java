@@ -208,73 +208,42 @@ public class Utils {
 		
 		return fb;
 	}
+	public static void printPost(Post p) {
+		if(p.getStory() != null)
+			System.out.println("Historia: " + p.getStory());
+		if(p.getMessage() != null)
+			System.out.println("publicacion: " + p.getMessage());
+		System.out.println("--------------------------------");
+	}
 	
-	public static Properties loadPropertiesFromFile(String foldername, String filename) throws IOException{
-		Properties props = new Properties();
-		Path configFile = Paths.get(foldername, filename);
-		if (Files.exists(configFile)){
-			props.load(Files.newInputStream(configFile));
-			/* 2. Definir una interfaz funcional predeterminada (java.util.function) y 
-			 * almacenar una expresión lambda para validar si v como String está 
-			 * vacío. Si está vacío utilizar logger para informar al usuario.
-			 * */
-			// Escribe tu código aquí {
-			
+	
+	public static String savePostsToFile(String fileName, List<Post> posts) {
+		File file = new File(fileName + ".txt");
 
-		
-			// }
+		try {
+    		if(!file.exists()) {
+    			file.createNewFile();
+            }
 
-			/* 3. Utilizar la interfaz funcional creada en el 
-			 * método forEach de props
-			 * */
-			// Escribe tu código aquí {
+    		FileOutputStream fos = new FileOutputStream(file);
+			for (Post p : posts) {
+				String mensaje = "";
+				if(p.getStory() != null)
+					mensaje += "Story: " + p.getStory() + "\n";
+				if(p.getMessage() != null)
+					mensaje += "Mensaje: " + p.getMessage() + "\n";
+				mensaje += "--------------------------------\n";
+				fos.write(mensaje.getBytes());
+			}
+			fos.close();
 
-			// }
-		} else {
-			logger.info("Creando nuevo archivo de condifugración.");
-			Files.copy(Paths.get("twitter","twitter.properties"), configFile);
+			logger.info("Posts guardados en el archivo '" + file.getName() + "'.");
+			System.out.println("el post se guardo en '" + file.getName() + "'.");
+		} catch (IOException e) {
+			logger.error(e);
 		}
-		return props;
-	}
-
-	public static void saveProperties(String foldername, String filename, Properties props) throws IOException{
-		Path configFile = Paths.get(foldername, filename);
-		props.store(Files.newOutputStream(configFile), "Generado por ObtenerAccessToken");
-	}
-
-	public static void printStatus(Object o){
-		/* 4. Método para imprimir Status en formato:
-		 *    Enviado por: @ status.getUser().getScreenName() + status.getText()
-		 * */
-		  @SuppressWarnings("unchecked")
-		List<Status> statuses = (List<Status>) o;
-		    System.out.println("Showing home timeline.");
-		    for (Status status : statuses) {
-		        System.out.println(status.getUser().getName() + ":" +
-		                           status.getText());
-		    }
-		    //by>=:http://twitter4j.org/en/code-examples.html
-		
-	}
-
-	public static void infoUsuario(Twitter twitter, String userStr) throws TwitterException {
-		User user = twitter.showUser(userStr);
-		if (user.getStatus() != null) {
-			System.out.println("\n@" + user.getScreenName() + " - " + user.getStatus().getText());
-		} else {
-			System.out.println("\n@" + user.getScreenName() + " es restringido.");
-		}
-	}
-
-	// Funcion para publicar un tweet
-	static Status creaTweet(Twitter twitter, String tweet) throws TwitterException{
-		/* 5. Publica un estado en twitter en base al texto de entrada
-		 *    regresa el estado creado.
-		 * */
-		// Escribe tu código aquí {
-	    Status status = twitter.updateStatus(tweet);
-	    System.out.println("Successfully updated the status to [" + status.getText() + "].");
-		// }
-		return status;
-	}
+        
+        return file.getName();
+       // return status;
+	}	
 }
