@@ -190,37 +190,15 @@ public class Utils {
 		props.store(Files.newOutputStream(configFile), "Generado por org.fbcmd4j.configTokens");
 	}
 
-					// Solicita PIN al usuario
-					System.out.print("Ingresa PIN obtenido al autorizar aplicación:");
-					String pin = scanner.nextLine();
-
-					try {
-						if (pin.length() > 0) {
-							accessToken = twitter.getOAuthAccessToken(requestToken, pin);
-						} else {
-							accessToken = twitter.getOAuthAccessToken(requestToken);
-						}
-					} catch (TwitterException te) {
-						logger.error(te);
-					}
-
-					logger.info("Access token Obtenido.");
-					System.out.println("\tAccess token: " + accessToken.getToken());
-					System.out.println("\tAccess token secret: " + accessToken.getTokenSecret());
-					props.setProperty("oauth.accessToken", accessToken.getToken());
-					props.setProperty("oauth.accessTokenSecret", accessToken.getTokenSecret());
-
-					// Guarda configuración nueva
-					saveProperties(foldername, filename, props);
-					logger.info("Configuraión guardada exitosamente.");
-				}
-			} catch(Exception e){
-				logger.error(e);
-			}
-		} catch(TwitterException e){
+	public static void postStatus(String mensage, Facebook facebook) {
+		try {
+			System.out.println("Se ha publicado el estado");
+			facebook.postStatusMessage(mensage);
+		} catch (FacebookException e) {
 			logger.error(e);
-		}
+		}		
 	}
+	
 
 	public static Twitter configuraTwitter(Properties props){
 		Twitter twitter = new TwitterFactory().getInstance();
