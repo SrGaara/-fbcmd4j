@@ -13,6 +13,15 @@ import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.Post;
 import facebook4j.ResponseList;
+//referencias
+//http://facebook4j.github.io/en/code-examples.html#post_link
+//https://unpocodejava.com/2014/10/07/un-poco-de-facebook4j-facebook-java/
+//https://github.com/jm66/CS13303/commit/3ee097c0bf67cf0d1a890437b0419a612e2f7f0b
+//el archivo log se ha dejado en blanco ya que asi lo requiere la evidencia
+
+
+
+
 public class Main {
 	private static final Logger logger = LogManager.getLogger(Main.class);
 	// Recuerda cambiar el path antes de exportarlo sino, el jar requerirá un
