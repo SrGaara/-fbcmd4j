@@ -1,19 +1,18 @@
-package twitter;
+package org.fbcmd4j;
 
 import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.util.InputMismatchException;
 import java.util.Properties;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fbcmd4j.utils.Utils;
 
-import twitter4j.ResponseList;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-
+import facebook4j.Facebook;
+import facebook4j.FacebookException;
+import facebook4j.Post;
+import facebook4j.ResponseList;
 public class Main {
 	private static final Logger logger = LogManager.getLogger(Main.class);
 	// Recuerda cambiar el path antes de exportarlo sino, el jar requerirá un
