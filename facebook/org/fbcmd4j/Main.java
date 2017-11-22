@@ -18,107 +18,98 @@ public class Main {
 	// Recuerda cambiar el path antes de exportarlo sino, el jar requerirá un
 	// directorio llamado config para guardar las configuraciones
 	private static final String CONFIG_DIR = "config";
-	private static final String CONFIG_FILE = "twitter.properties";
+	private static final String CONFIG_FILE = "fbcmd4j.properties";
 	private static final String APP_VERSION = "v1.0";
+	logger.info("Iniciando app");
+	Facebook facebook =  null;
+	Properties props = null;
 
-	public static void main(String[] args) {
-		logger.info("inicializando app");
-		Twitter twitter = null;
-		Properties props = null;
-		// Carga propiedades
-		try {
-			props = Utils.loadPropertiesFromFile(CONFIG_DIR, CONFIG_FILE);
-		} catch (IOException ex) {	
-			System.out.println(ex);
+	try {
+		props = Utils.loadConfigFile(CONFIG_DIR, CONFIG_FILE);
+	} catch (IOException ex) {
+		System.out.println(ex);
 			logger.error(ex);
-		}
-
-		int seleccion;
-		try (Scanner scanner = new Scanner(System.in)){
-			while(true){
-				twitter = Utils.configuraTwitter(props);
-				// Inicio Menu
-				System.out.format("Simple Twitter client %s\n\n", APP_VERSION);
-				System.out.println("Opciones: ");
-				System.out.println("(0) Cargar configuracion");
-				System.out.println("(1) Obtener Tokens");
-				System.out.println("(2) Tweet");
-				System.out.println("(3) Leer timeline");
-				System.out.println("(4) Info de Usuario");
-				System.out.println("(5) Salir");
-				System.out.println("\nPor favor ingrese una opción: ");
-				// Fin de Menu
-				try {
-					seleccion = scanner.nextInt();
-					scanner.nextLine();
-
-					switch(seleccion){
-						case 0:
-							props = Utils.loadPropertiesFromFile(CONFIG_DIR, CONFIG_FILE);
-							break;
-						case 1: 
-							Utils.obtenerAccessToken(CONFIG_DIR, CONFIG_FILE, props, scanner);
-							props = Utils.loadPropertiesFromFile(CONFIG_DIR, CONFIG_FILE);
-							break;
-						case 2:
-							System.out.println(props);
-							System.out.println(twitter);
-							System.out.println("Escribe tu tweet: ");
-							String tweet = scanner.nextLine();
-							Status status = Utils.creaTweet(twitter, tweet);
-							System.out.println("Tweet'd [" + status.getText() + "].");
-							break;
-						case 3:
-							ResponseList list = twitter.getHomeTimeline();
-							// 1. Crea una referencia al método printStatus para imprimir 
-							// cada status
-							// Escribe tu codigo aqui {
-							//lo comentado no funciono (hace lomismo)
-							 /*   Twitter twitter1 = getTwitterinstance();
-						     
-						    return twitter.getHomeTimeline().stream()
-						      .map(item -> item.getText())
-						      .collect(Collectors.toList());*/
-							Utils.printStatus(list);
-							//}
-							break;
-						case 4:
-							System.out.println("Ingresa el usuario: ");
-							String userStr = scanner.nextLine();
-							// 2. Por medio del usuario ingresado en userStr invocar el método
-							// Utils.infoUsuario para imprimir la información
-							// Escribe tu codigo aqui {
-							Utils.infoUsuario(twitter, userStr);
-							//}
-							break;
-						case 5:
-							System.exit(0);
-						default:
-							logger.error("Opción inválida");
-							break;
-					}
-				} catch (InputMismatchException ex){
-					System.out.println("Ocurrió un errror, favor de revisar log.");
-					logger.error("Opción inválida. %s. \n", ex.getClass());
-					scanner.next();
-				} catch (TwitterException ex){
-					System.out.println("Ocurrió un errror, favor de revisar log.");
-					logger.error(ex.getErrorMessage());
-					scanner.next();
-				} catch (NoSuchFileException io){
-					System.out.println("Archivo de configuración no existe.");
-					logger.error(io);
-				} catch (Exception ex){
-					System.out.println("Ocurrió un errror, favor de revisar log.");
-					logger.error(ex);
-					scanner.next();
-				} 
-			}
-		} catch (Exception ex){
-			logger.error(ex);
-		}
 	}
-
+	
+	int seleccion = 1;
+	try {
+		Scanner scan = new Scanner(System.in);
+		while(true) {
+			facebook = Utils.configFacebook(props);
+			//System.out.println("facebook en linea de comandos #Arturo estuvo aqui\n\n"+  "Opciones: \n"+  "(1) NewsFeed \n"+  "(2) Wall \n"+  "(3) Publicar Estado \n"+  "(4) Publicar Link \n"+  "(5) Salir \n"+  "\nPor favor ingrese una opción:");
+			System.out.format("Simple facebook client   #Arturo estuvo aqui %s\n\n",APP_VERSION);
+			System.out.println("!!!en este programa se pone en practica!!!!!! ");
+			System.out.println("!!!lo aprendido en el curso de computacion!!! ");
+			System.out.println("!!!en java. este programa te premitira!!!!!!! ");
+			System.out.println("!!!realizar las operaciones que !!!!!!!!!!!!! ");
+			System.out.println("!!!aparecen a continuacion!!!!!!!!!!!!!!!!!!! \n");
+			System.out.println(" \n");
+			System.out.println("!!!favor de loguearse primero (opcion 0)!!!!! \n");
+			System.out.println("Opciones: ");
+			System.out.println("(0) Cargar configuracion");
+			System.out.println("(1) mostrar newsfeed");
+			System.out.println("(2) ver el muro");
+			System.out.println("(3) publicar estado");
+			System.out.println("(4) publicar una URL");
+			System.out.println("(5) Salir");
+			System.out.println("\nIngrese una opcion: ");
+			try {
+				seleccion = scan.nextInt();
+				scan.nextLine();
+				switch (seleccion) {
+				case 0:
+					Utils.estabtoken(CONFIG_DIR, CONFIG_FILE, props, scan);
+					props = Utils.loadConfigFile(CONFIG_DIR, CONFIG_FILE);
+					break;
+				case 1:
+					System.out.println("Mostrando noticias...");
+					ResponseList<Post> newsFeed = facebook.getFeed();
+					for (Post p : newsFeed) {
+						Utils.printPost(p);
+					}
+		
+					break;
+				case 2:
+					System.out.println("Mostrando el muro...");
+					ResponseList<Post> wall = facebook.getPosts();
+					for (Post p : wall) {
+						Utils.printPost(p);
+					}		
+		
+					break;
+				case 3:
+					System.out.println("que estas pensando?");
+					String estado = scan.nextLine();
+					Utils.postStatus(estado, facebook);
+					break;
+				case 4:
+					System.out.println("Ingresa el URL a publicar: ");
+					String link = scan.nextLine();
+					Utils.postLink(link, facebook);
+					break;
+				case 5:
+					System.out.println("bye bye");
+					System.exit(0);
+					break;
+				default:
+					break;
+				}
+			} catch (InputMismatchException ex) {
+				System.out.println("Ocurri� un errror, favor de revisar log o no tienes internet.");
+				 logger.error("Opci�n inv�lida. %s. \n", ex.getClass());
+			} catch (FacebookException ex) {
+				System.out.println("Ocurri� un errror, favor de revisar log. o no tienes internet");
+				logger.error(ex.getErrorMessage());
+			} catch (Exception ex) {
+				System.out.println("Ocurri� un errror, favor de revisar log.");
+				logger.error(ex);
+			}
+			System.out.println();
+		}
+	} catch (Exception e) {
+		logger.error(e);
+	}
 }
 
 
+}
